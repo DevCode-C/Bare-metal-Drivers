@@ -1,8 +1,8 @@
 #include "types.h"
 #include "registers.h"
 
-#ifndef __NVIC__H
-#define __NVIC__H
+#ifndef NVIC__H
+#define NVIC__H
 
 #define NVIC_HIGHEST_PRIORITY   0U
 #define NVIC_HIGH_PRIORITY      1U

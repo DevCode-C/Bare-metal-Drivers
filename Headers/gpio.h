@@ -1,8 +1,8 @@
 #include "types.h"
 #include "registers.h"
 
-#ifndef __GPIO__H
-#define __GPIO__H
+#ifndef GPIO__H
+#define GPIO__H
 
 typedef enum
 {
@@ -36,29 +36,29 @@ typedef enum
 
 typedef struct gpio
 {
-    __IO uint32_t   Pin;
+    volatile uint32_t   Pin;
     GPIOx_MODE      Mode;
     GPIOx_PULL      Pull;
     GPIOx_ALT       Alternate;
 }GPIO_InitTypeDef;
 
-#define GPIO_PIN_0      ((uint16_t)0x0001U)     
-#define GPIO_PIN_1      ((uint16_t)0x0002U)
-#define GPIO_PIN_2      ((uint16_t)0x0004U)
-#define GPIO_PIN_3      ((uint16_t)0x0008U)
-#define GPIO_PIN_4      ((uint16_t)0x0010U)
-#define GPIO_PIN_5      ((uint16_t)0x0020U)
-#define GPIO_PIN_6      ((uint16_t)0x0040U)
-#define GPIO_PIN_7      ((uint16_t)0x0080U)
-#define GPIO_PIN_8      ((uint16_t)0x0100U)
-#define GPIO_PIN_9      ((uint16_t)0x0200U)
-#define GPIO_PIN_10     ((uint16_t)0x0400U)
-#define GPIO_PIN_11     ((uint16_t)0x0800U)
-#define GPIO_PIN_12     ((uint16_t)0x1000U)
-#define GPIO_PIN_13     ((uint16_t)0x2000U)
-#define GPIO_PIN_14     ((uint16_t)0x4000U)
-#define GPIO_PIN_15     ((uint16_t)0x8000U)
-#define GPIO_PIN_ALL    ((uint16_t)0xFFFFU)
+#define GPIO_PIN_0      (0x0001UL)     
+#define GPIO_PIN_1      (0x0002UL)
+#define GPIO_PIN_2      (0x0004UL)
+#define GPIO_PIN_3      (0x0008UL)
+#define GPIO_PIN_4      (0x0010UL)
+#define GPIO_PIN_5      (0x0020UL)
+#define GPIO_PIN_6      (0x0040UL)
+#define GPIO_PIN_7      (0x0080UL)
+#define GPIO_PIN_8      (0x0100UL)
+#define GPIO_PIN_9      (0x0200UL)
+#define GPIO_PIN_10     (0x0400UL)
+#define GPIO_PIN_11     (0x0800UL)
+#define GPIO_PIN_12     (0x1000UL)
+#define GPIO_PIN_13     (0x2000UL)
+#define GPIO_PIN_14     (0x4000UL)
+#define GPIO_PIN_15     (0x8000UL)
+#define GPIO_PIN_ALL    (0xFFFFUL)
 
 
 /**

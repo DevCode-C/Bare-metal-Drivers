@@ -22,7 +22,7 @@ uint32_t charToDigit(uint8_t* charDigit);
 int main(void)
 {
     initialise_monitor_handles();
-    printf("\n");
+    (void) printf("\n");
     uint32_t blinkTime = 1000000;
     /* Enable clock for GPIO port A, RCC_AHBENR bit  */
     RCC_GPIOx_CLK_EN(RCC_GPIOA);
@@ -52,7 +52,7 @@ int main(void)
 
     for(;;)
     {
-        uart_sendBuffer(&uartConfig,(uint8_t*)msgBlock,(sizeof(msgBlock)));
+        uart_sendBuffer(&uartConfig,msgBlock,(sizeof(msgBlock)));
         // if (status == SET)
         // {
         //     status = RESET;
@@ -68,8 +68,10 @@ int main(void)
     return 0;
 }
 
-void uart_mspInit( UART_InitTypeDef *uartH ) /* cppcheck-suppress misra-c2012-2.7 */
+void uart_mspInit( UART_InitTypeDef *uartH ) 
 {
+    (void) uartH;
+
     RCC_GPIOx_CLK_EN(RCC_GPIOA);
     GPIO_InitTypeDef GPIO_UART_Config; 
     GPIO_UART_Config.Mode = GPIO_MODE_ALT;
@@ -85,14 +87,16 @@ void uart_mspInit( UART_InitTypeDef *uartH ) /* cppcheck-suppress misra-c2012-2.
 
 void uart_isrRxCallback( UART_InitTypeDef *uartH )
 {
+    (void) uartH;
+
     static uint32_t i = 0;
     RxBuffer[i] = RxByte;
     i++;
-    if(RxBuffer[i-1] == '\r')
+    if(RxBuffer[i-1UL] == ((uint8_t)'\r'))
     {
-        RxBuffer[i-1] = '\0';
+        RxBuffer[i-1UL] = ((uint8_t)'\0');
         status = SET;
-        i=0;
+        i=0UL;
     }
     uart_receiveBufferInt(&uartConfig,&RxByte,1);
 }
@@ -109,7 +113,9 @@ void EXTI4_15_handler(void)
 
 void gpio_isrCallback(uint32_t pin)
 {
-    uart_sendBufferInt(&uartConfig,(uint8_t*)msgInt,sizeof(msgInt));   
+    (void) pin;
+
+    uart_sendBufferInt(&uartConfig,msgInt,sizeof(msgInt));   
 }
 
 uint32_t charToDigit(uint8_t* charDigit)
@@ -117,18 +123,12 @@ uint32_t charToDigit(uint8_t* charDigit)
     uint32_t temp = 0;
     uint8_t i = 0;
 
-    if (charDigit[0] == '-')
+    while (charDigit[i] != ((uint8_t)'\0'))
     {
+        temp = (temp * 10UL) +(charDigit[i] - ((uint8_t)'0'));
         i++;
     }
-    while (charDigit[i] != '\0')
-    {
-        temp = temp * 10 +(charDigit[i++] - '0');
-    }
-    if (charDigit[0] == '-')
-    {
-        temp = temp * (-1U);
-    }
+
     return temp;
     
     

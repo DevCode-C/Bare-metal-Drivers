@@ -63,39 +63,45 @@ void uart_configPort( UART_InitTypeDef *uartH )
 
 _weak void uart_mspInit( UART_InitTypeDef *uartH )
 {
-
+    (void) uartH;
 }
     
-void uart_sendBuffer( UART_InitTypeDef *uartH, uint8_t *ptr, uint32_t len )
+void uart_sendBuffer( UART_InitTypeDef *uartH, const uint8_t *ptr, uint32_t len )
 {
     volatile uint16_t temp = 0;
-    volatile uint16_t *ptr16bits;
+    volatile uint16_t lentemp = len;
+    uint16_t *ptr16bits;
     if (uartH->WordLength == UART_WORDLENGTH_9B)
     {
-        ptr16bits = (uint16_t*)ptr;
+        ptr16bits = ptr;
     }
     // printf("%s\n",ptr);
-    while (len != 0)
+    while (lentemp != 0UL)
     {
         if ((uartH->WordLength == UART_WORDLENGTH_9B) && (BITCHECK(uartH->uart->ISR,UART_ISR_TXE_FLAG)) )
         {
             uartH->uart->TDR = (ptr16bits[temp] & MASK_LENGTH9);
             temp++;
-            len--;
+            lentemp--;
         }
-        else if ((BITCHECK(uartH->uart->ISR,UART_ISR_TXE_FLAG)))
+        else if ((BITCHECK(uartH->uart->ISR,UART_ISR_TXE_FLAG) != 0UL))
         {
             uartH->uart->TDR = (ptr[temp] & MASK_LENGTH8);
             temp++;
-            len--;
+            lentemp--;
         }
+        else
+        {
+            /* code */
+        }
+        
         
     }
 }
 
-void uart_sendBufferInt( UART_InitTypeDef *uartH, uint8_t *ptr, uint32_t len )
+void uart_sendBufferInt( UART_InitTypeDef *uartH, const uint8_t *ptr, uint32_t len )
 {
-    if ((len > 0) && (ptr != NULL))
+    if ((len > 0UL) && (ptr != NULL))
     {
         uartH->TxRxData.pTxBuffer = ptr;
         uartH->TxRxData.sizeTxBuffer = len;
@@ -113,7 +119,7 @@ void uart_sendBufferInt( UART_InitTypeDef *uartH, uint8_t *ptr, uint32_t len )
 
 void uart_receiveBufferInt( UART_InitTypeDef *uartH, uint8_t *ptr, uint32_t len )
 {
-    if (len > 0)
+    if (len > 0UL)
     {
         uartH->TxRxData.pRxBuffer = ptr;
         uartH->TxRxData.sizeRxBuffer = len;
@@ -151,10 +157,10 @@ static void RX_IT_UART(UART_InitTypeDef *uartH)
 
 void uart_isrHandler( UART_InitTypeDef *uartH )
 {
-    if (BITCHECK(uartH->uart->ISR,UART_ISR_TXE_FLAG))
+    if (BITCHECK(uartH->uart->ISR,UART_ISR_TXE_FLAG) != 0UL)
     {
         
-        if (uartH->TxRxData.sizeTxBuffer == 0)
+        if (uartH->TxRxData.sizeTxBuffer == 0UL)
         {
             //Disable interrupt until Tx complete
             RESET_BIT(uartH->uart->CR1,UART_CR1_TXEIE_IT);
@@ -168,10 +174,10 @@ void uart_isrHandler( UART_InitTypeDef *uartH )
         
     }
     
-    if (BITCHECK(uartH->uart->ISR,UART_ISR_RXNE_FLAG))
+    if (BITCHECK(uartH->uart->ISR,UART_ISR_RXNE_FLAG) != 0UL)
     {
         
-        if (uartH->TxRxData.sizeRxBuffer == 0)
+        if (uartH->TxRxData.sizeRxBuffer == 0UL)
         {
             //Disable intenrrupt until Rx complete
             RESET_BIT(uartH->uart->CR1,UART_CR1_RXNEIE_IT);
@@ -203,16 +209,16 @@ void uart_isrHandler( UART_InitTypeDef *uartH )
 
 _weak void uart_isrTxCallback( UART_InitTypeDef *uartH )
 {
-
+    (void) uartH;
 }
 
 _weak void uart_isrRxCallback( UART_InitTypeDef *uartH )
 {
-
+    (void) uartH;
 }
 
-_weak void uart_isrErrorCallback( UART_InitTypeDef *uart )
+_weak void uart_isrErrorCallback( UART_InitTypeDef *uartH )
 {
-
+    (void) uartH;
 }
 

@@ -1,17 +1,16 @@
-#ifndef __TYPES__H
-    #define __TYPES__H
+#ifndef TYPES__H
+    #define TYPES__H
 
-    /*Privates defines*/
-    #define __IO    volatile    
+    /*Privates defines*/    
     #define _delay(cuentas)         for(volatile uint32_t i = 0; i < (cuentas) ;i++)
     #define _weak   __attribute__((weak))
 
-    #define SET     1U
-    #define RESET   0
+    #define SET     1UL
+    #define RESET   0UL
 
-    #define BYTE        8U
-    #define HALF_WORD   16U
-    #define WORD        32U
+    #define BYTE        8UL
+    #define HALF_WORD   16UL
+    #define WORD        32UL
 
     #define LEFT_SHIFT(var,bits)    ((var) <<= (bits) )
     #define RIGTH_SHIFT(var,bits)   ((var) >>= (bits) )

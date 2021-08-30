@@ -1,7 +1,7 @@
 #include "types.h"
 #include "registers.h"
-#ifndef __UART__H
-    #define __UART__H
+#ifndef UART__H
+    #define UART__H
 
     typedef struct __uart_transferData
     {
@@ -64,12 +64,12 @@
     //manda la cantidad de caracteres especificados por len y referenciados en ptr a través 
     //del uart especificado, sin usar interrupciones. La función regresará solo cuando todos 
     //los caracteres se hayan mandado.
-    void uart_sendBuffer( UART_InitTypeDef *uartH, uint8_t *ptr, uint32_t len );
+    void uart_sendBuffer( UART_InitTypeDef *uartH, const uint8_t *ptr, uint32_t len );
 
     //manda a través de interrupciones la cantidad de caracteres especificados por len y referenciados 
     //en ptr a través del uart especificado. La función solo inicia la transferencia, la interrupción 
     //se encargará de enviar los caracteres.
-    void uart_sendBufferInt( UART_InitTypeDef *uartH, uint8_t *ptr, uint32_t len );
+    void uart_sendBufferInt( UART_InitTypeDef *uartH, const uint8_t *ptr, uint32_t len );
 
     //recibe mediante interrupciones la cantidad de caracteres especificados por len y referenciados 
     //en ptr a través del uart especificado. La función solo inicia la transferencia, la interrupción 

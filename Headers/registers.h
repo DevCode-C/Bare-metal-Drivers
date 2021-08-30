@@ -1,6 +1,6 @@
 #include "types.h"
-#ifndef __REGISTERS__H
-    #define __REGISTERS__H
+#ifndef REGISTERS__H
+    #define REGISTERS__H
 
     typedef enum
     {
@@ -37,81 +37,81 @@
 
     typedef struct __gpio_registers
     {
-        __IO uint32_t MODER;
-        __IO uint32_t OTYPER;
-        __IO uint32_t OSPEEDR;
-        __IO uint32_t PUPDR;
-        __IO uint32_t IDR;
-        __IO uint32_t ODR;
-        __IO uint32_t BSRR;
-        __IO uint32_t LCKR;
-        __IO uint32_t AFRL;
-        __IO uint32_t AFRH;
-        __IO uint32_t BRR;
+        volatile uint32_t MODER;
+        volatile uint32_t OTYPER;
+        volatile uint32_t OSPEEDR;
+        volatile uint32_t PUPDR;
+        volatile uint32_t IDR;
+        volatile uint32_t ODR;
+        volatile uint32_t BSRR;
+        volatile uint32_t LCKR;
+        volatile uint32_t AFRL;
+        volatile uint32_t AFRH;
+        volatile uint32_t BRR;
     }GPIO_TypeDef;
 
     typedef struct __rcc_registers
     {
-        __IO uint32_t CR;
-        __IO uint32_t CFGR;
-        __IO uint32_t CIR;
-        __IO uint32_t APB2RSTR;
-        __IO uint32_t APB1RSTR;
-        __IO uint32_t AHBENR;
-        __IO uint32_t APB2ENR;
-        __IO uint32_t APB1ENR;
-        __IO uint32_t BDCR;
-        __IO uint32_t CSR;
-        __IO uint32_t AHBRSTR;
-        __IO uint32_t CFGR2;
-        __IO uint32_t CFGR3;
-        __IO uint32_t CR2;
+        volatile uint32_t CR;
+        volatile uint32_t CFGR;
+        volatile uint32_t CIR;
+        volatile uint32_t APB2RSTR;
+        volatile uint32_t APB1RSTR;
+        volatile uint32_t AHBENR;
+        volatile uint32_t APB2ENR;
+        volatile uint32_t APB1ENR;
+        volatile uint32_t BDCR;
+        volatile uint32_t CSR;
+        volatile uint32_t AHBRSTR;
+        volatile uint32_t CFGR2;
+        volatile uint32_t CFGR3;
+        volatile uint32_t CR2;
     }RCC_TypeDef;
 
     typedef struct{
-        __IO uint32_t ISER;
-        __IO uint32_t Reserved_0[31];
-        __IO uint32_t ICER;
-        __IO uint32_t Reserved_1[31];
-        __IO uint32_t ISPR;
-        __IO uint32_t Reserved_2[31];
-        __IO uint32_t ICPR;
-        __IO uint32_t Reserved_3[95];
-        __IO uint32_t IPR[8];
+        volatile uint32_t ISER;
+        volatile uint32_t Reserved_0[31];
+        volatile uint32_t ICER;
+        volatile uint32_t Reserved_1[31];
+        volatile uint32_t ISPR;
+        volatile uint32_t Reserved_2[31];
+        volatile uint32_t ICPR;
+        volatile uint32_t Reserved_3[95];
+        volatile uint32_t IPR[8];
     }NVIC_TypeDef;
 
     typedef struct __syscfg_registers
     {
-        __IO uint32_t CFGR1;
-        __IO uint32_t Reserved0;
-        __IO uint32_t EXTICR[4];
-        __IO uint32_t CFGR2;
+        volatile uint32_t CFGR1;
+        volatile uint32_t Reserved0;
+        volatile uint32_t EXTICR[4];
+        volatile uint32_t CFGR2;
     }SYSCFG_TypeDef;
 
     typedef struct __exti_registers
     {
-        __IO uint32_t IMR;
-        __IO uint32_t EMR;
-        __IO uint32_t RTSR;
-        __IO uint32_t FTSR;
-        __IO uint32_t SWIER; 
-        __IO uint32_t PR;
+        volatile uint32_t IMR;
+        volatile uint32_t EMR;
+        volatile uint32_t RTSR;
+        volatile uint32_t FTSR;
+        volatile uint32_t SWIER; 
+        volatile uint32_t PR;
     }EXTI_TypeDef;
 
 
     typedef struct __uart_registers
     {
-        __IO uint32_t CR1;
-        __IO uint32_t CR2;
-        __IO uint32_t CR3;
-        __IO uint32_t BRR;
-        __IO uint32_t Reserved;
-        __IO uint32_t RTOR;
-        __IO uint32_t RQR;
-        __IO uint32_t ISR;
-        __IO uint32_t ICR;
-        __IO uint32_t RDR;
-        __IO uint32_t TDR;
+        volatile uint32_t CR1;
+        volatile uint32_t CR2;
+        volatile uint32_t CR3;
+        volatile uint32_t BRR;
+        volatile uint32_t Reserved;
+        volatile uint32_t RTOR;
+        volatile uint32_t RQR;
+        volatile uint32_t ISR;
+        volatile uint32_t ICR;
+        volatile uint32_t RDR;
+        volatile uint32_t TDR;
     }USART_TypeDef;
     
 
