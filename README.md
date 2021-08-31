@@ -1,6 +1,6 @@
 # BARE-METAL DRIVERS
 ### REQUIREMENTS
-- **Board: Nucleo board F070RB** ![Tarjeta](Others/Board.jpg)
+- **Board: Nucleo board F070RB** 
 - **openocd, version 0.11.0**
 - **Compiler ARM-M, version 11.2.0**
 - **Debuger ARM-M, version 10.2**
@@ -18,3 +18,5 @@ ___
 - **Visual Studio Code**
 - **cppcheck**
 ___
+
+![Tarjeta](Others/Board.jpg)
