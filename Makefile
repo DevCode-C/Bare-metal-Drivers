@@ -20,7 +20,9 @@ $(addprefix $(OBJS_F)/,%.o) : %.c
 
 -include $(OBJS_F)/*.d
 
-misra_test:
+.PHONY : misra clean flash open debug
+
+misra:
 	@cppcheck --addon=misra.json --inline-suppr --std=c99 --template=gcc --force Sources/  -I Headers/ 
 
 clean:
