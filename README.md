@@ -19,4 +19,4 @@ ___
 - **cppcheck**
 ___
 
-![Tarjeta](Others/Board.jpg)
+![Tarjeta](Others/board.jpg)
